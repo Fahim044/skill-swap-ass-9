@@ -1,0 +1,40 @@
+[
+  
+  {
+    "skillId": 1,
+    "skillName": "Spoken English Practice",
+    "providerName": "Sara Hossain",
+    "providerEmail": "sara@skillswap.com",
+    "price": 10,
+    "rating": 4.6,
+    "slotsAvailable": 5,
+    "description": "Conversational English sessions for non-native speakers.",
+    "image": "https://img.icons8.com/?size=100&id=17035&format=png&color=000000",
+    "category": "Language"
+  },
+  {
+    "skillId": 2,
+    "skillName": "Digital Marketing Strategy",
+    "providerName": "Emily Davis",
+    "providerEmail": "emily@skillswap.com",
+    "price": 40,
+    "rating": 4.9,
+    "slotsAvailable": 2,
+    "description": "Develop a comprehensive strategy for social media and search engine marketing.",
+    "image": "https://img.icons8.com/?size=100&id=Zc1kZ3IwI9aZ&format=png&color=000000",
+    "category": "Business"
+  },
+  {
+    "skillId": 3,
+    "skillName": "Mastering Sourdough Baking 🍞",
+    "providerName": "Raj Patel",
+    "providerEmail": "raj@skillswap.com",
+    "price": 20,
+    "rating": 4.7,
+    "slotsAvailable": 6,
+    "description": "A hands-on workshop covering starter maintenance and baking techniques.",
+    "image": "https://img.icons8.com/?size=100&id=yMwWwQ5SgGQ3&format=png&color=000000",
+    "category": "Cooking"
+  }
+  
+]
