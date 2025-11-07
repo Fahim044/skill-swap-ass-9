@@ -2,10 +2,15 @@ import React, {  useContext } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { AuthContext } from './AuthProvider';
 import { toast } from 'react-toastify';
+import Loading from '../Components/Loading';
 
 const SignUp = () => {
-    const {createUser,updateUser,setUser,signInWithGoogle}=useContext(AuthContext);
+    const {createUser,updateUser,setUser,signInWithGoogle,loading}=useContext(AuthContext);
     const navigate=useNavigate();
+    if(loading)
+    {
+        return <Loading></Loading>
+    }
     const handleSignInWithGoogle=()=>{
         signInWithGoogle()
         .then((result)=>{

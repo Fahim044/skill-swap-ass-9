@@ -2,12 +2,17 @@ import React, { use, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from './AuthProvider';
 import { toast } from 'react-toastify';
+import Loading from '../Components/Loading';
 
 const Login = () => {
     const [error,setError]=useState("");
-    const {signInWithGoogle,setUser,signIn}=use(AuthContext);
+    const {signInWithGoogle,setUser,signIn,loading}=use(AuthContext);
     const location=useLocation();
     const navigate=useNavigate();
+    if(loading)
+    {
+      return <Loading></Loading>
+    }
     const handleLogIn=(e)=>{
         e.preventDefault();
         const form=e.target;

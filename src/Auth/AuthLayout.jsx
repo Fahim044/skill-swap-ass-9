@@ -1,9 +1,11 @@
 import React from 'react';
 import Navbar from '../Components/Navbar';
-import { Outlet } from 'react-router';
+import { Outlet, useNavigation } from 'react-router';
 import { ToastContainer } from 'react-toastify';
+import Loading from '../Components/Loading';
 
 const AuthLayout = () => {
+    const {state}=useNavigation();
     return (
        <>
         <div>
@@ -11,7 +13,7 @@ const AuthLayout = () => {
                 <Navbar></Navbar>
             </header>
             <main>
-                <Outlet></Outlet>
+                {state=="loading"?<Loading></Loading>:<Outlet></Outlet>}
             </main>
         </div>
         <ToastContainer></ToastContainer>

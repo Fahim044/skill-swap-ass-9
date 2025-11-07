@@ -7,6 +7,9 @@ import Home from "../Components/Home";
 import Profile from "../HomeLayout/Profile";
 import PrivateRoute from "./PrivateRoute";
 import SkillDetails from "../Pages/SkillDetails";
+import { Suspense } from "react";
+import Loading from "../Components/Loading";
+import { ToastContainer } from "react-toastify";
 
 
 const router=createBrowserRouter([
@@ -42,7 +45,9 @@ const router=createBrowserRouter([
     {
         path:'/skill-details/:id',
         element:<PrivateRoute>
-            <SkillDetails></SkillDetails>
+            <Suspense fallback={<Loading></Loading>}>
+                <SkillDetails></SkillDetails>
+            </Suspense>
         </PrivateRoute>
     },
     
@@ -51,5 +56,5 @@ const router=createBrowserRouter([
         element:<p>Error404</p>
     }
 ]);
-
+<ToastContainer></ToastContainer>
 export default router;

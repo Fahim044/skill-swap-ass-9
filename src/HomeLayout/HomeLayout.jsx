@@ -1,11 +1,13 @@
 import React from 'react';
 import Navbar from '../Components/Navbar';
-import { Outlet } from 'react-router';
+import { Outlet, useNavigation } from 'react-router';
 import Footer from '../Components/Footer';
 import HeroSlider from '../Components/HeroSlider';
 import { ToastContainer } from 'react-toastify';
+import Loading from '../Components/Loading';
 
 const HomeLayout = () => {
+    const {state}=useNavigation();
     return (
         <>
         <div>
@@ -14,7 +16,8 @@ const HomeLayout = () => {
           <HeroSlider></HeroSlider>
           </header>
         <main>
-            <Outlet></Outlet>
+            {state=="loading"?<Loading></Loading>:<Outlet></Outlet>}
+            
         </main>
         <footer>
             <Footer></Footer>
