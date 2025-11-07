@@ -48,7 +48,7 @@ const Login = () => {
           <label className="label">Password</label>
           <input name='password' type="password" className="input" placeholder="Password" />
           <div><a className="link link-hover">Forgot password?</a>
-          <p href="">Don't Have an Account? <Link className='hover:underline' to="/auth/signup">Sign Up</Link></p>
+          <p >Don't Have an Account? <Link className='hover:underline' to="/auth/signup">Sign Up</Link></p>
           </div>
           {
             error && <p className='text-red-400 text-xs'>{error}</p>

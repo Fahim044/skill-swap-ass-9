@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import userIcon from '../assets/user.png';
 const Navbar = () => {
     const {user,logOut}=use(AuthContext);
-    console.log(user?.displayName);
+    // console.log(user?.displayName);
     const handleLogOut=()=>{
         logOut()
         .then(()=>{
@@ -26,7 +26,7 @@ const Navbar = () => {
             <div className='flex gap-3'>
                 
                 <div className='relative group inline-block'>
-                    <img  className={`w-10 rounded-full cursor-pointer`} src={user ? user?.photoURL:userIcon} alt="User Profile" />
+                    <img  className={`w-10 rounded-full cursor-pointer`} src={user ? user?.photoURL:userIcon}  />
                     {
                         user && <span className='absolute top-10 left-1/2 -translate-x-1/2 text-sm rounded px-2 py-1 opacity-0 transition-opacity bg-gray-800 text-white  group-hover:opacity-100'>{user?.displayName}</span>
                     }

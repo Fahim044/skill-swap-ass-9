@@ -5,6 +5,8 @@ import Login from "../Auth/Login";
 import SignUp from "../Auth/SignUp";
 import Home from "../Components/Home";
 import Profile from "../HomeLayout/Profile";
+import PrivateRoute from "./PrivateRoute";
+import SkillDetails from "../Pages/SkillDetails";
 
 
 const router=createBrowserRouter([
@@ -36,6 +38,12 @@ const router=createBrowserRouter([
                 element:<SignUp></SignUp>
             }
         ]
+    },
+    {
+        path:'/skill-details/:id',
+        element:<PrivateRoute>
+            <SkillDetails></SkillDetails>
+        </PrivateRoute>
     },
     
     {
