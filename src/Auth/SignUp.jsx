@@ -1,6 +1,7 @@
 import React, {  useContext } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { AuthContext } from './AuthProvider';
+import { toast } from 'react-toastify';
 
 const SignUp = () => {
     const {createUser,updateUser,setUser}=useContext(AuthContext);
@@ -27,6 +28,7 @@ const SignUp = () => {
             const errorCode=error.code;
             const errorMessage=error.message;
             console.log("Error Message:",errorMessage,"Error Code:",errorCode);
+            toast.error(errorMessage);
         })
     }
 // console.log(auth);
