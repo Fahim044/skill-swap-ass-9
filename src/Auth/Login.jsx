@@ -8,7 +8,7 @@ import { Eye, EyeOff } from 'lucide-react';
 const Login = () => {
     const [error,setError]=useState("");
     const [showPassword,setShowPassword]=useState(false);
-    const {signInWithGoogle,setUser,signIn,loading,setCollectEmail}=use(AuthContext);
+    const {signInWithGoogle,setUser,signIn,loading,setCollectEmail,setLoading}=use(AuthContext);
     const location=useLocation();
     const navigate=useNavigate();
     const emailRef=useRef();
@@ -46,9 +46,10 @@ const Login = () => {
             const user=result.user;
             console.log(user);
             navigate(`${location.state?location.state:"/"}`);
-        })
+        }).finally(()=>setLoading(false))
         .catch(error=>{
             setError(error.message);
+            setLoading(false);
         })
     }
     const handleSignInWithGoogle=()=>{
@@ -62,7 +63,7 @@ const Login = () => {
         .catch(error=>{
             console.log(error);
             toast(error.message);
-        })
+        }).finally(()=>setLoading(false))
     }
     return (
         

@@ -6,7 +6,7 @@ import Loading from '../Components/Loading';
 
 const SignUp = () => {
     const [error,setError]=useState("");
-    const {createUser,updateUser,setUser,signInWithGoogle,loading}=useContext(AuthContext);
+    const {createUser,updateUser,setUser,signInWithGoogle,loading,setLoading}=useContext(AuthContext);
     const navigate=useNavigate();
     if(loading)
     {
@@ -23,7 +23,7 @@ const SignUp = () => {
         .catch(error=>{
             toast(error.message);
             console.log(error);
-        })
+        }).finally(()=>setLoading(false))
     }
     const handleSignUp=(e)=>{
         e.preventDefault();
@@ -60,15 +60,20 @@ const SignUp = () => {
                 setUser({...user,displayName:name,photoURL:photo});
                 navigate("/");
                 // console.log(user);
-            })
+            }).finally(()=>setLoading(false))
         })
         .catch(error=>{
             const errorCode=error.code;
             const errorMessage=error.message;
             console.log("Error Message:",errorMessage,"Error Code:",errorCode);
             toast.error(errorMessage);
+            // setError(errorMessage);
+            setLoading(false);
+
+            
             
         })
+        
     }
 // console.log(auth);
 
