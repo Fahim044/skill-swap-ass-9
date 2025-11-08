@@ -22,6 +22,25 @@ const Login = () => {
         const form=e.target;
         const email=form.email.value;
         const password=form.password.value;
+         const passwordPattern=/^.{6,}$/;
+        const upperCasePattern=/^(?=.*[A-Z]).*$/;
+        const lowerCasePattern=/^(?=.*[a-z]).*$/;
+        if(!passwordPattern.test(password))
+        {
+            setError("Password length must be at least 6 character ");
+            return;
+        }
+        else if(!upperCasePattern.test(password))
+        {
+            setError("-	Must have an Uppercase letter in the password ");
+            return;
+        }
+        else if(!lowerCasePattern.test(password))
+        {
+            setError("-	Must have a Lowercase letter in the password  ");
+            return;
+        }
+        setError("");
         signIn(email,password)
         .then(result=>{
             const user=result.user;
@@ -38,6 +57,7 @@ const Login = () => {
             const user=result.user;
             console.log(user);
             setUser(user);
+            navigate("/");
         })
         .catch(error=>{
             console.log(error);

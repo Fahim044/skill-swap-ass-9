@@ -67,6 +67,7 @@ const SignUp = () => {
             const errorMessage=error.message;
             console.log("Error Message:",errorMessage,"Error Code:",errorCode);
             toast.error(errorMessage);
+            
         })
     }
 // console.log(auth);
