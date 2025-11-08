@@ -3,9 +3,11 @@ import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from './AuthProvider';
 import { toast } from 'react-toastify';
 import Loading from '../Components/Loading';
+import { Eye, EyeOff } from 'lucide-react';
 
 const Login = () => {
     const [error,setError]=useState("");
+    const [showPassword,setShowPassword]=useState(false);
     const {signInWithGoogle,setUser,signIn,loading,setCollectEmail}=use(AuthContext);
     const location=useLocation();
     const navigate=useNavigate();
@@ -53,10 +55,17 @@ const Login = () => {
           <label className="label">Email</label>
           <input name='email' ref={emailRef} type="email" className="input" placeholder="Email" />
           <label className="label">Password</label>
-          <input name='password' type="password" className="input" placeholder="Password" />
+          <div className='relative z-10'>
+            
+            <input name='password' type={showPassword?"text":"password"} className="input" placeholder="Password" />
+            <button type='button' onClick={()=>setShowPassword(!showPassword)} className='btn btn-xs absolute top-2.5 left-68'>
+              {
+              showPassword ?<EyeOff ></EyeOff>:<Eye></Eye>
+            }
+            </button>
+          </div>
           <div><Link onClick={()=>{
     const email=emailRef.current?.value;
-          
             setCollectEmail(email);
           }} to="/auth/forget-password"  className="link link-hover">Forgot password?</Link>
           <p >Don't Have an Account? <Link className='hover:underline' to="/auth/signup">Sign Up</Link></p>
