@@ -1,10 +1,11 @@
-import React, {  useContext } from 'react';
+import React, {  useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { AuthContext } from './AuthProvider';
 import { toast } from 'react-toastify';
 import Loading from '../Components/Loading';
 
 const SignUp = () => {
+    const [error,setError]=useState("");
     const {createUser,updateUser,setUser,signInWithGoogle,loading}=useContext(AuthContext);
     const navigate=useNavigate();
     if(loading)
@@ -31,6 +32,25 @@ const SignUp = () => {
         const photo=form.photo.value;
         const email=form.email.value;
         const password=form.password.value;
+        const passwordPattern=/^.{6,}$/;
+        const upperCasePattern=/^(?=.*[A-Z]).*$/;
+        const lowerCasePattern=/^(?=.*[a-z]).*$/;
+        if(!passwordPattern.test(password))
+        {
+            setError("Password length must be at least 6 character ");
+            return;
+        }
+        else if(!upperCasePattern.test(password))
+        {
+            setError("-	Must have an Uppercase letter in the password ");
+            return;
+        }
+        else if(!lowerCasePattern.test(password))
+        {
+            setError("-	Must have a Lowercase letter in the password  ");
+            return;
+        }
+        setError("");
         createUser(email,password)
         .then(result=>{
             const user=result.user;
@@ -60,20 +80,22 @@ const SignUp = () => {
                     <fieldset className="fieldset">
                         {/* name */}
                          <label className="label">Name</label>
-                  <input name='name' type="text" className="input" placeholder="Name" />
+                  <input name='name' type="text" className="input" placeholder="Name" required />
                         {/* email */}
                   <label className="label">Email</label>
-                  <input name='email' type="email" className="input" placeholder="Email" />
+                  <input name='email' type="email" className="input" placeholder="Email" required />
                   {/* photo URL */}
                   <label className="label">Photo URL</label>
-                  <input name='photo' type="text" className="input" placeholder="Photo URL" />
+                  <input name='photo' type="text" className="input" placeholder="Photo URL" required />
                   {/* password */}
                   <label className="label">Password</label>
-                  <input name='password' type="password" className="input" placeholder="Password" />
+                  <input name='password' type="password" className="input" placeholder="Password" required />
                   <div>
                   <p>Already Have an Account? <Link className='hover:underline' to="/auth/login">Login</Link></p>
                   </div>
-                  
+                  {
+                    error && <p className='text-red-400 text-xs'>{error}</p>
+                  }
                   <button className="btn btn-neutral mt-4">Sign Up</button>
                   {/* Google */}
         <button type='button' onClick={handleSignInWithGoogle} className="btn bg-white text-black border-[#e5e5e5]">

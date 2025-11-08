@@ -50,7 +50,13 @@ category}=skill;
         <div className='card-body flex flex-col justify-center items-center'>
             <form onSubmit={(e)=>{
                 e.preventDefault();
-                toast.success("Session Booked")
+                const form=e.target;
+                const name=form.name.value;
+                const email=form.email.value;
+                
+
+                toast.success("Session Booked");
+                form.reset();
             }}>
                  <label className="label">Name</label>
                  <br />
