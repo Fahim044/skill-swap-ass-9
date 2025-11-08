@@ -10,6 +10,7 @@ import SkillDetails from "../Pages/SkillDetails";
 import { Suspense } from "react";
 import Loading from "../Components/Loading";
 import { ToastContainer } from "react-toastify";
+import ForgetPassword from "../Auth/ForgetPassword";
 
 
 const router=createBrowserRouter([
@@ -41,6 +42,10 @@ const router=createBrowserRouter([
             {
                 path:"/auth/signup",
                 element:<SignUp></SignUp>
+            },
+            {
+                path:'/auth/forget-password',
+                element:<ForgetPassword></ForgetPassword>
             }
         ]
     },

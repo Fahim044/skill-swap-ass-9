@@ -1,4 +1,4 @@
-import React, { use, useState } from 'react';
+import React, { use, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from './AuthProvider';
 import { toast } from 'react-toastify';
@@ -6,13 +6,15 @@ import Loading from '../Components/Loading';
 
 const Login = () => {
     const [error,setError]=useState("");
-    const {signInWithGoogle,setUser,signIn,loading}=use(AuthContext);
+    const {signInWithGoogle,setUser,signIn,loading,setCollectEmail}=use(AuthContext);
     const location=useLocation();
     const navigate=useNavigate();
+    const emailRef=useRef();
     if(loading)
     {
       return <Loading></Loading>
     }
+    
     const handleLogIn=(e)=>{
         e.preventDefault();
         const form=e.target;
@@ -49,10 +51,14 @@ const Login = () => {
         <form onSubmit={handleLogIn}>
             <fieldset className="fieldset">
           <label className="label">Email</label>
-          <input name='email' type="email" className="input" placeholder="Email" />
+          <input name='email' ref={emailRef} type="email" className="input" placeholder="Email" />
           <label className="label">Password</label>
           <input name='password' type="password" className="input" placeholder="Password" />
-          <div><a className="link link-hover">Forgot password?</a>
+          <div><Link onClick={()=>{
+    const email=emailRef.current?.value;
+          
+            setCollectEmail(email);
+          }} to="/auth/forget-password"  className="link link-hover">Forgot password?</Link>
           <p >Don't Have an Account? <Link className='hover:underline' to="/auth/signup">Sign Up</Link></p>
           </div>
           {
